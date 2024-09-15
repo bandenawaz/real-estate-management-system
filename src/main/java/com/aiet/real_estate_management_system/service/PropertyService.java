@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aiet.real_estate_management_system.entity.Property;
+import com.aiet.real_estate_management_system.exception.ResourceNotFoundException;
 import com.aiet.real_estate_management_system.repository.PropertyRepository;
 
 @Service
