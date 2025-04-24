@@ -17,8 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
 @Table(name = "properties")
 public class Property {
@@ -42,6 +41,18 @@ public class Property {
 	@OneToMany(mappedBy = "property", cascade = CascadeType.ALL,
 			fetch = FetchType.LAZY)
 	private List<Lease> leases;
+
+	public Property() {
+	}
+
+	public Property(Long id, String address, double price, double size, String ownerName, List<Lease> leases) {
+		this.id = id;
+		this.address = address;
+		this.price = price;
+		this.size = size;
+		this.ownerName = ownerName;
+		this.leases = leases;
+	}
 
 	public Long getId() {
 		return id;

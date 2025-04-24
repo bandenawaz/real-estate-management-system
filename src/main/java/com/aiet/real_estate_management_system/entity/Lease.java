@@ -18,9 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter @Setter
+
 @Entity
 @Table(name = "leases")
 public class Lease {
@@ -46,4 +44,65 @@ public class Lease {
 	@Column(nullable = false)
 	private double rentAmount;
 
+	public Lease() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Lease(Long id, Property property, Tenant tenant, LocalDate startDate, LocalDate endDate, double rentAmount) {
+		super();
+		this.id = id;
+		this.property = property;
+		this.tenant = tenant;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.rentAmount = rentAmount;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Property getProperty() {
+		return property;
+	}
+
+	public void setProperty(Property property) {
+		this.property = property;
+	}
+
+	public Tenant getTenant() {
+		return tenant;
+	}
+
+	public void setTenant(Tenant tenant) {
+		this.tenant = tenant;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
+
+	public double getRentAmount() {
+		return rentAmount;
+	}
+
+	public void setRentAmount(double rentAmount) {
+		this.rentAmount = rentAmount;
+	}
 }
