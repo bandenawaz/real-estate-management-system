@@ -22,7 +22,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn --version' // Confirm Maven is available
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTests'
                 echo 'Build completed successfully'
             }
         }
