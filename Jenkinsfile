@@ -29,9 +29,18 @@ pipeline {
 
         stage('Test') {
             steps {
-                //sh 'mvn test'
+                sh 'mvn test'
+                sh 'mvn clean verify'
                 echo 'Tests completed successfully'
             }
+        }
+        stage('Report Results') {
+            steps {
+                junit '**/target/surefire-reports/*.xml'
+                junit '**/target/failsafe-reports/*.xml'
+                echo 'Report Results completed successfully'
+            }
+
         }
 
         stage('Deploy') {
@@ -43,6 +52,9 @@ pipeline {
     }
 
     post {
+    always {
+        echo 'Pipeline completed - test reports archived'
+    }
         success {
             echo 'Pipeline completed successfully'
         }
