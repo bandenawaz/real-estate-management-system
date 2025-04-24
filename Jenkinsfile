@@ -1,16 +1,27 @@
 pipeline {
     agent any
+
+    environment {
+        MAVEN_HOME = '/opt/homebrew/bin' // Adjust if necessary
+        PATH = "${MAVEN_HOME}:${env.PATH}"
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
-                git url: 'https://github.com/bandenawaz/real-estate-management-system.git'
+                // Checkout from the 'main' branch
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[url: 'https://github.com/bandenawaz/real-estate-management-system.git']]
+                ])
                 echo 'Checkout completed successfully'
             }
         }
 
         stage('Build') {
             steps {
+                sh 'mvn --version' // Confirm Maven is available
                 sh 'mvn clean package'
                 echo 'Build completed successfully'
             }
@@ -33,7 +44,7 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline completed'
+            echo 'Pipeline completed successfully'
         }
 
         failure {
